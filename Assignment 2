@@ -1,0 +1,12 @@
+To update a container's image using a Deployment in Kubernetes, ensuring zero downtime, you can follow 
+these steps:
+
+1.Update the Deployment manifest with the new image version.
+2.Apply the updated manifest using kubectl apply -f my-deployment.yaml.
+3.Ensure the RollingUpdate strategy is set in the Deployment.
+4.Monitor the update process with kubectl rollout status deployment/my-app.
+5.Verify the update by checking the running pods.
+6.Rollback if necessary using kubectl rollout undo deployment/my-app.
+
+Following these steps ensures that your application is updated with zero downtime, leveraging
+Kubernetes' rolling update mechanism.
