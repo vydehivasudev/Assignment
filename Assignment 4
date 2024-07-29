@@ -1,0 +1,54 @@
+1.Commands that you used during the assignment.
+  
+  cd /root/
+
+  git clone https://github.com/ashishrpandey/example-voting-app
+
+  cd /root/example-voting-app/k8s-specifications
+
+  kubectl apply -f .
+
+  kubectl get svc
+
+  kubectl delete pod <voting-pod-name>
+ 
+  kubectl delete pod <worker-pod-name>
+ 
+  kubectl delete pod <db-pod-name>
+
+2.Logs and Observations
+
+### Voting Pod Deletion
+
+- Command: `kubectl delete pod <voting-pod-name>`
+- Observation: Voting functionality stopped temporarily until the pod was recreated.
+
+### Worker Pod Deletion
+
+- Command: `kubectl delete pod <worker-pod-name>`
+- Observation: No immediate visible effect on the apps.
+
+### DB Pod Deletion
+
+- Command: `kubectl delete pod <db-pod-name>`
+- Observation: The result app stopped updating and showed an error as it couldn't connect to the
+  database.
+
+3.Why Result App Stopped Working
+
+The result app stopped working after the DB pod was deleted because it lost connection to the database, 
+which stores the voting results.
+
+4.How to Make the Result Pod Work Again
+
+To make the result pod work again, I ensured that the DB pod was up and running. Once the database 
+was available, the result pod automatically reconnected to it and resumed displaying results.
+
+5.Jargons Learned
+  
+  ReplicaSet
+  NodePort
+  Deployment
+  Pod
+  Service
+  Namespace
