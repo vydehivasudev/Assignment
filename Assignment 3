@@ -1,0 +1,81 @@
+To diagnose and resolve the issue where an application deployed via a ReplicaSet and exposed using a
+NodePort service is not reachable, you can follow this structured approach:
+
+Step 1: Verify ReplicaSet and Pods
+
+Check ReplicaSet Status:
+
+kubectl get rs
+kubectl describe rs <replica-set-name>
+
+Check Pods Status:
+
+kubectl get pods
+kubectl describe pod <pod-name>
+
+Step 2: Verify Pod Health and Application Logs
+
+Check Pod Health:
+
+kubectl get pods -o wide
+
+Check Application Logs:
+
+kubectl logs <pod-name>
+
+Step 3: Verify NodePort Service Configuration
+
+Check NodePort Service:
+
+kubectl get svc
+kubectl describe svc <service-name>
+
+Step 4: Verify Network Policies (if any)
+
+Check Network Policies:
+
+kubectl get networkpolicy
+kubectl describe networkpolicy <network-policy-name>
+
+Step 5: Verify Pod Port Configuration
+
+Check Pod Port Configuration:
+
+kubectl describe pod <pod-name>
+
+Step 6: Verify NodePort Accessibility
+
+Get NodePort Information:
+
+kubectl get svc <service-name> -o yaml
+
+Test NodePort Accessibility:
+
+From outside the cluster, try accessing the application using the Node's IP address and the nodePort:
+
+curl http://<node-ip>:<nodePort>
+
+Step 7: Check Node Firewall Rules
+
+Verify Firewall Rules:
+
+Step 8: Check for External Load Balancers or Proxies
+
+Check External Load Balancers:
+
+If you have an external load balancer or proxy in front of your Kubernetes cluster, ensure it is 
+correctly configured to forward traffic to the NodePort.
+
+Step 9: Verify Cluster DNS Configuration
+
+Check Cluster DNS:
+
+kubectl get pods -n kube-system -l k8s-app=kube-dns
+kubectl describe pod <kube-dns-pod-name> -n kube-system
+
+Step 10: Check Service Endpoints
+
+Verify Endpoints:
+
+kubectl get endpoints
+kubectl describe endpoints <service-name>
