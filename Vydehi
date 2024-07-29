@@ -1,0 +1,16 @@
+A common use-case for using a DaemonSet instead of a ReplicaSet in Kubernetes is when you need to ensure 
+that a particular pod runs on all nodes within the cluster.
+
+1.Log Collection
+Scenario: You want to collect logs from all nodes in the cluster.
+
+Explanation: To ensure that logs are collected from all nodes, you deploy a log collection agent 
+(such as Fluentd, Filebeat, or Logstash) using a DaemonSet.
+This ensures that each node has the log collector running, thereby collecting logs from all nodes.
+
+2.Node Monitoring
+Scenario: You want to monitor the health and performance of all nodes in the cluster.
+
+Explanation: To monitor node health and performance, you deploy a monitoring agent (such as Prometheus
+Node Exporter or Datadog Agent) using a DaemonSet. This ensures that each node has a monitoring agent 
+running, thereby collecting metrics from all nodes.
